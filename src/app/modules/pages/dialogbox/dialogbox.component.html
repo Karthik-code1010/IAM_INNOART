@@ -1,0 +1,100 @@
+<div class="header">
+    <h2 mat-dialog-title>Row level restriction</h2>
+    <button mat-icon-button [mat-dialog-close]="false">
+        <mat-icon>close</mat-icon>
+    </button>
+
+</div>
+
+<div mat-dialog-content>
+    <p>Column Selected :    {{selectGrossSal}}</p>
+</div>
+<div  fxLayout="row" fxLayoutAlign="end end">
+    <div >
+
+        <div fxFlex="10" >
+            <button style="width: 130px !important;" mat-raised-button (click)="addQuantity()">Add Rule</button>
+          
+        </div>
+      
+    </div>
+
+</div>
+
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+   
+    <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex="100" formArrayName="quantities">
+            <div fxLayout="column" fxLayoutGap="20px">
+              
+                <br><br>
+                <div fxLayout="row"  fxLayoutGap="10px" *ngFor="let quantity of quantities().controls; let i=index" [formGroupName]="i" >
+                    <div fxFlex="30" >
+                        <mat-form-field style="width: 250px;" class="identity-dropdown" appearance="outline">
+                            <mat-label>Select Column</mat-label>
+                        
+                            <mat-select  formControlName="gross" (selectionChange)="onSelectMethod($event.value)">
+
+                              
+                                <mat-option *ngFor="let item of columndata"  [value]="item.value">
+                                    {{item.value}}
+                                  </mat-option>
+                        
+                            </mat-select>
+                           
+                          </mat-form-field>
+                    </div>
+                    <div fxFlex="30">
+                        <mat-form-field style="width: 250px;"  class="identity-dropdown" appearance="outline">
+                            <mat-label>Lesser than</mat-label>
+                        
+                            <mat-select formControlName="price">
+                                <mat-option value="<">Lesser Than</mat-option>
+                                <mat-option value=">">Greater Than</mat-option>  
+                                <mat-option value=">=">Greater than or equal</mat-option>
+                                <mat-option value="<=">Less than or equal</mat-option>
+                                <mat-option value="==">equal</mat-option>
+                            </mat-select>
+                           
+                          </mat-form-field>
+                    </div>
+                    <div fxFlex="30">
+                        <mat-form-field  style="width: 250px;" class="identity-input" appearance="outline" >
+                   
+                            <input type="tel" matInput placeholder="35,000" formControlName="sal" >
+                           
+                          </mat-form-field>
+                    </div>
+                    <div fxFlex="10">
+                        <button mat-raised-button color="primary" (click)="removeQuantity(i)">Remove</button>
+                    </div>
+                    <div fxFlex="20">
+                        <mat-radio-group  formControlName="and_or" fxLayout="row"  fxLayoutGap="30px"aria-label="">
+                            <mat-radio-button  value="AND">AND</mat-radio-button>
+                            <mat-radio-button value="OR">OR</mat-radio-button>
+                          </mat-radio-group>
+                        <!-- <button mat-raised-button>AND</button>
+                        <button mat-raised-button color="primary">OR</button> -->
+                    </div>
+                  
+    
+    
+    
+                </div>
+    
+            </div>
+        </div>
+       
+    </div>
+    
+    <div mat-dialog-actions [align]="'center'">
+        <button mat-raised-button [mat-dialog-close]="false">
+         Cancel
+        </button>
+        <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true">
+         Save
+        </button>
+    </div>
+
+</form>

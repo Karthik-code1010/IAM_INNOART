@@ -1,0 +1,253 @@
+<div #title class="container">
+    <h1  class="head-txt">
+        Identity & Access Management
+    </h1>
+    <div  fxLayout="row" fxLayout.md="column"  fxLayout.sm="column"
+    fxFlexFill  fxLayoutGap="30px">
+        <div   fxFlex="40" fxFlex.md="50"  fxFlex.sm="50"  fxLayout="column">
+           
+            <br>
+            <div>
+               <h4 class="head-txt-18"> Data Access Restriction</h4>
+            </div>
+            <div>
+                <p>
+                    Data restriction for user {{unamedis}}
+                </p>
+            </div>
+            <div>
+               <b>
+                   Data Explorer
+               </b>
+           </div>
+            
+        </div>
+        <div fxFlex="60" fxFlex.md="50"  fxFlex.sm="50" >
+            <div fxLayout="row" fxLayoutGap="70px">
+                <div>
+                    <mat-form-field class="identity-input" appearance="outline" >
+               
+                        <mat-icon matSuffix class="color-blue">search</mat-icon>
+                        <input type="tel" matInput placeholder="Search Column"  [(ngModel)]="searchColumn" (change)="searchColumnNameVal()">
+                       
+                      </mat-form-field>
+                </div>
+                <div>
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <div> <mat-icon class="circle-icon-red">circle</mat-icon></div>
+                            <p style="margin-top:10px;" class="color-blue">Full restriction</p>
+                        </div>
+                       <div fxLayout="row" fxLayoutGap="10px">
+                        <div> 
+                            <mat-icon class="circle-icon-yellow">circle</mat-icon></div>
+                         <p style="margin-top:10px;" class="color-blue">Partial restriction</p>
+                       </div>
+                      
+                    </div>
+                </div>
+                <div>
+                    <div style="margin-top: 30px;" fxLayout="row" fxLayoutGap="10px" style="cursor: pointer;" >
+                        <div >
+                            <mat-icon (click)="confirmCancelDialog()"  [matRippleCentered]="true" matRipple class="color-blue">settings</mat-icon>
+
+                        </div>
+                        <div matRipple (click)="confirmCancelDialog()"  [matRippleCentered]="true">
+                            <p class="color-blue">Custom where clause</p>
+                        </div>
+                      
+
+                    </div>
+                </div>
+
+            </div>
+          
+        </div>
+
+    </div>
+
+    
+    <br>
+    <div fxLayout="row" fxLayout.md="column" fxLayout.sm="column" fxLayoutGap="30px">
+        <div fxFlex="40"fxFlex.md="50"  fxFlex.sm="50"  class="identity-metastore">
+           <div fxLayout="column" style="margin: 20px;">
+            <!-- <div>
+                <mat-form-field class="identity-dropdown" appearance="outline">
+                    <mat-label>Metadatastore</mat-label>
+                    <mat-icon matPrefix> <img
+                        class="customicon"
+                        src="../../../../assets/datastore.png"
+                      />
+                    </mat-icon>
+                    <mat-select [(value)]="selected">
+                     
+                      <mat-option value="Metadatastore">Metadatastore</mat-option>
+                      <mat-option value="Metadatastore1">Metadatastore2</mat-option>
+                      <mat-option value="Metadatastore2">Metadatastore3</mat-option>
+                    </mat-select>
+                   
+                  </mat-form-field> &nbsp;&nbsp;&nbsp;
+                  <mat-icon matRipple>refresh</mat-icon>
+                
+            </div> -->
+          <div>
+            <mat-form-field class="identity-input" appearance="outline" >
+               
+                <mat-icon matPrefix> <img
+                  class="customicon"
+                  src="../../../../assets/filtericon.png"
+                /></mat-icon>
+                <input type="tel" matInput placeholder="Filter Tables"  [(ngModel)]="searchMetaData" (change)="searchMetaDataName()">
+               
+              </mat-form-field>
+          </div>
+          <div>
+            <table  mat-table [dataSource]="metaDataArray" class="mat-elevation-z8 demo-table">
+                <!-- Position Column -->
+              
+              
+                <!-- Name Column -->
+                <ng-container  matColumnDef="listoftables">
+                  <th mat-header-cell *matHeaderCellDef>List of Tables</th>
+                  <td matRipple mat-cell *matCellDef="let element">
+                      <div fxLayout="row" style="align-items: stretch;">
+                        <mat-icon style="transform: scale(0.8);"> border_all</mat-icon>
+                       <p style="margin-top: 3px;"> {{element.tableName.value}}</p>
+                       
+                      </div>
+                   </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="tableaccess">
+                  <th mat-header-cell *matHeaderCellDef>Table Access</th>
+                  <td matRipple mat-cell *matCellDef="let element"><mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="Allow" [checked]="true" (click)="allowClick(element.id,element.tableName.value)">Allow</mat-radio-button>
+                    <mat-radio-button value="{{element.id}}"  (change)="changeDennyClick(element.id,element.tableName.value)">Deny</mat-radio-button>
+                  </mat-radio-group></td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="columnaccess">
+                  <th mat-header-cell *matHeaderCellDef>Column Access</th>
+                  <td matRipple mat-cell *matCellDef="let element"> <div style="margin-left: 45px;">
+                   
+                      <button mat-icon-button (click)="columnready(element.id,element.tableName.value)" [id]="element.id">
+                        <mat-icon> <img
+                          class="customicon"
+                          src="../../../../assets/db.png"
+                        /></mat-icon>
+                  
+                      </button>
+                  </div></td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                    mat-row
+                    (click)="clickedRows.add(row)"
+                    [class.demo-row-is-clicked]="clickedRows.has(row)"
+                    *matRowDef="let row; columns: displayedColumns;"
+                ></tr>
+              </table>
+              
+              <!-- <div>
+                <h3>
+                  Click Log
+                </h3>
+              </div>
+              
+              <div *ngIf="!clickedRows.size">
+                Clicked rows will be logged here
+              </div>
+              
+              <ul>
+                <li *ngFor="let clickedRow of clickedRows">
+                  Clicked on {{clickedRow.name}}
+                </li>
+              </ul> -->
+              
+             
+          </div>
+
+          <div class="last-txt">
+              <p>Schema last refreshed : 2 hours ago</p>
+          </div>
+             
+
+           </div>
+        </div>
+        <div fxFlex="60" fxFlex.md="50"  fxFlex.sm="50" >
+            <div>
+                <table  mat-table [dataSource]="columndata" class="mat-elevation-z8 demo-table">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="columnname">
+                      <th mat-header-cell *matHeaderCellDef>Column Name</th>
+                      <td matRipple  mat-cell *matCellDef="let element">{{element.value}}</td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                  
+                  
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="column-restriction">
+                      <th mat-header-cell *matHeaderCellDef>Column Restriction</th>
+                      <td matRipple  mat-cell *matCellDef="let element">
+                        <div style="margin-left: 40px;">
+                          <!-- <mat-checkbox  (change)="checkboxchange($event,element.value)"  [formControl]="element.checked" ></mat-checkbox> -->
+                            <mat-slide-toggle  (change)="checkboxchange($event,element.value)"  [formControl]="element.checked"></mat-slide-toggle>
+                        </div>  
+                        </td>
+                    </ng-container>
+                  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="status">
+                      <th mat-header-cell *matHeaderCellDef>Status</th>
+                      <td matRipple mat-cell *matCellDef="let element">
+
+                        <div *ngIf="element.checked.value == true" style="margin-left: 10px;">
+                            <mat-icon class="circle-icon-red">circle</mat-icon>
+                        </div>
+                        <div *ngIf="element.checked.value == false" style="margin-left: 10px;">
+                          <mat-icon class="circle-icon-yellow">circle</mat-icon>
+                      </div>
+                      </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                    <tr
+                        mat-row
+                        (click)="clickedRows.add(row)"
+                        [class.demo-row-is-clicked]="clickedRows2.has(row)"
+                        *matRowDef="let row; columns: displayedColumns2;"
+                    ></tr>
+
+                  </table>
+                  <div fxLayout="row" fxLayoutAlign="center center" class="bottom-btn"  fxLayoutGap="20px">
+                    <div>
+                        <button mat-raised-button style="width: 130px !important;" (click)="clearcheckbox()">Cancel</button>
+                    </div>
+                    <div>
+                       
+                        <button  mat-raised-button color="primary" style="width: 130px !important;" (click)="columelementaccess()">Save</button>
+                    </div>
+                </div>
+                  
+                  
+                  
+            </div>
+              
+        </div>
+
+    </div>
+<br>
+    <!-- <div fxLayout="row" fxLayoutAlign="center center" class="bottom-btn"  fxLayoutGap="20px">
+        <div>
+            <button mat-raised-button style="width: 130px !important;">Cancel</button>
+        </div>
+        <div>
+           
+            <button  mat-raised-button color="primary" style="width: 130px !important;">Save</button>
+        </div>
+    </div> -->
+</div>

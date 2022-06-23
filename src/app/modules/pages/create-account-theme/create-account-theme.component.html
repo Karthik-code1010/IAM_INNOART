@@ -1,0 +1,122 @@
+<div class="container">
+    <h1 class="head-txt">Create Account</h1>
+    <div  fxLayout="row" fxLayoutGap="10px" >
+        <div>
+            <mat-icon style="font-size: 25px; color:orange;">color_lens</mat-icon>
+        </div>
+      
+        <h2>
+            Theme Setting
+        </h2>
+    </div>
+
+    <div  fxLayout="column"  fxLayoutGap="10px" >
+        <div>
+            <h4>
+                Background
+            </h4>
+        </div>
+        <div  fxLayout="row"  fxLayoutGap="10px" fxLayoutAlign="start center" >
+            <div fxFlex="14">
+              
+                <!-- <button mat-icon-button>
+                    <mat-icon class="red-color" aria-hidden="false" aria-label="settings">circle</mat-icon>
+              
+                  </button> -->
+           <input type="color" [(ngModel)]="app_bg_color" id="favcolor" name="favcolor" class="color-pick" value="#1C31E3">
+                 
+                  <p class="grey-txt">Application Background</p>
+            </div>
+            <div fxFlex="14">
+                <input type="color" [(ngModel)]="menu_color"  id="favcolor" name="favcolor" class="color-pick" value="#CE6459">
+                  <p class="grey-txt">Menu</p>
+            </div >
+            <div fxFlex="14">
+                <input type="color"  [(ngModel)]="button_table_color"  id="favcolor" name="favcolor" class="color-pick" value="#E31C61">
+                  <p class="grey-txt">Button & Table header</p>
+            </div>
+            <div fxFlex="14">
+                <input type="color" [(ngModel)]="header_color"  id="favcolor" name="favcolor" class="color-pick" value="#B81CE3">
+                  <p class="grey-txt">Header</p>
+            </div>
+            <div fxFlex="14">
+                <input type="color" [(ngModel)]="widget_color"  id="favcolor" name="favcolor" class="color-pick" value="#1C31E3">
+                  <p class="grey-txt">Widgets</p>
+            </div>
+
+        </div>
+        <div>
+            <h4>
+                Text
+            </h4>
+        </div>
+        <div  fxLayout="row"  fxLayoutGap="10px" fxLayoutAlign="start center" >
+            <div fxFlex="14">
+                <input type="color" [(ngModel)]="a_bg_heading_text" id="favcolor" name="favcolor" class="color-pick" value="#1C31E3">
+                 
+                  <p class="grey-txt">Application Background Heading Text</p>
+            </div>
+            <div fxFlex="14">
+                <input type="color"  [(ngModel)]="menu_text" id="favcolor" name="favcolor" class="color-pick" value="#CE6459">
+                  <p class="grey-txt">Menu Text</p>
+            </div >
+            <div fxFlex="14">
+                <input type="color"  [(ngModel)]="widget_text" id="favcolor" name="favcolor" class="color-pick" value="#E31C61">
+                  <p class="grey-txt">Widget Text</p>
+            </div>
+            <div fxFlex="14">
+                <input type="color" [(ngModel)]="error_validation"  id="favcolor" name="favcolor" class="color-pick" value="#B81CE3">
+                  <p class="grey-txt">Error & Validation</p>
+            </div>
+            <div fxFlex="14">
+                <input type="color"  [(ngModel)]="header_text_icon"  id="favcolor" name="favcolor" class="color-pick" value="#1C31E3">
+                  <p class="grey-txt">Header Text & Icons</p>
+            </div>
+            <div fxFlex="14">
+                <input type="color" [(ngModel)]="input_fields" id="favcolor" name="favcolor" class="color-pick" value="#1CE3D7">
+                  <p class="grey-txt">Input Fields</p>
+            </div>
+
+        </div>
+    
+
+    </div>
+
+
+    <div  fxLayout="row" fxLayoutGap="10px" >
+        <div>
+            <mat-icon style="font-size: 25px; color:orange;"><img src="../../../../assets/ticon.png" alt=""> </mat-icon>
+        </div>
+      
+        <h2>
+            Typography
+        </h2>
+    </div>
+
+    <div  fxLayout="column"   >
+        <form [formGroup]="form0"  >
+            <formly-form [model]="model0" [fields]="fields0" [options]="options0" [form]="form0"></formly-form>
+           
+         
+          </form>
+   
+   
+
+    </div>
+
+   
+    <div fxLayout="row" fxLayoutAlign="center center" class="bottom-btn"  fxLayoutGap="20px">
+        <div>
+            <button mat-raised-button style="width: 130px !important;">Cancel</button>
+        </div>
+        <div>
+           
+            <button  mat-raised-button color="primary" style="width: 130px !important;" (click)="saveThemeData()">Save</button>
+        </div>
+       
+    </div>
+
+
+
+   
+</div>

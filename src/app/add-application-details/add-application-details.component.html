@@ -1,0 +1,22 @@
+<div style="margin: 2.5rem;">
+    <div>
+      <h1>Add Application Details</h1>
+    </div>
+    <div>
+        <mat-card><h3 class="add-card-head">Application Details</h3></mat-card>
+    </div>
+   <br>
+
+    <div fxLayout="row" fxFlex="100%" fxLayoutGap="10px" style="background-color: white;">
+        <form [formGroup]="form" >
+            <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form><br><br>
+           
+            <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px">
+        
+            <button type="reset" mat-raised-button>Cancel</button>&nbsp;&nbsp;&nbsp;
+            <button type="submit"mat-raised-button color="primary">Save</button>
+            </div>
+          </form>
+        </div>
+
+  </div>  

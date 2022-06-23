@@ -1,0 +1,126 @@
+<div class="container">
+    <h1 class="head-txt">
+        Identity & Access Management
+    </h1>
+ 
+   
+    <br>
+    <div  fxLayout="row"   fxLayout.xs="column"  fxLayoutGap="30px" fxLayoutAlign="start center"  >
+     
+       
+
+    </div>
+    <div  fxLayout="row" fxLayout.sm="column"  fxLayout.xs="column"  fxLayoutGap="30px" fxLayoutAlign="space-between center" >
+        <div fxLayout="column">
+            <h2>List of Groups   </h2>
+          <div>
+              <mat-form-field class="identity-input" appearance="outline" >
+         
+                  <mat-icon matSuffix class="color-blue">search</mat-icon>
+                  <input type="tel" matInput placeholder="Search" [(ngModel)]="searchGroup" (change)="searchGroupName()" >
+                 
+                </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="column">
+         
+          <div>
+              <button (click)="addgroupDialogbox()" mat-raised-button color="primary">
+                  <mat-icon>person</mat-icon> 
+                  Add Group
+              </button>
+          </div>
+        </div>
+       
+  
+      </div>
+      <div  fxLayout="row" fxLayoutAlign="end center" >
+        <div>
+          <h4>Choose required columns</h4>
+        </div>
+        <div fxFlexAlign="center" style="margin-top: -15px;">
+          <button mat-icon-button (click)="settingClick1()">
+            <mat-icon class="vap-icon" aria-hidden="false" aria-label="view_column">view_column</mat-icon>
+      
+          </button>
+       
+        </div>
+      </div>
+    
+   <div fxLayout="column" fxLayout.sm="column"  fxLayout.xs="column" >
+    <table mat-table [dataSource]="listGroupVal" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> <div fxLayout="row"> <mat-icon style="font-size: 20px; color:orange">tag</mat-icon>ID </div>  </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="groupname">
+        <th mat-header-cell *matHeaderCellDef>
+          <div fxLayout="row"> <mat-icon style="font-size: 20px; color:orange">groups</mat-icon>Group Name</div> 
+           </th>
+        <td mat-cell *matCellDef="let element"> {{element.groupname.value}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>        <div fxLayout="row"> <mat-icon style="font-size: 20px; color:orange">military_tech</mat-icon>Status</div>  </th>
+        <td mat-cell *matCellDef="let element"> {{element.status.value}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="createdat">
+        <th mat-header-cell *matHeaderCellDef>  <div fxLayout="row"> <mat-icon style="font-size: 20px; color:orange">watch_later</mat-icon>Created At </div>   </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdAt | date:dataService.DATEFORMAT}} </td>
+      </ng-container>
+      <ng-container matColumnDef="updatedat">
+        <th mat-header-cell *matHeaderCellDef>  <div fxLayout="row"> <mat-icon style="font-size: 20px; color:orange">watch_later</mat-icon>Updated At </div>   </th>
+        <td mat-cell *matCellDef="let element"> {{element.modifiedAt | date:dataService.DATEFORMAT}} </td>
+      </ng-container>
+      <ng-container matColumnDef="createdby">
+        <th mat-header-cell *matHeaderCellDef> <div fxLayout="row"> <mat-icon style="font-size: 20px; color:orange">person</mat-icon>Created By</div> </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdBy.value}} </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> <div fxLayout="row"> <mat-icon style="font-size: 20px; color:orange">call_to_action</mat-icon>Action</div>  </th>
+        <td mat-cell *matCellDef="let element">
+        <div>
+          <button mat-icon-button (click)="editGroupName(element.id)">
+            <mat-icon class="vap-icon" aria-hidden="false" aria-label="create">create</mat-icon>
+      
+          </button>
+          <!-- <button mat-icon-button>
+            <mat-icon class="vap-icon" aria-hidden="false" aria-label="visibility">visibility</mat-icon>
+      
+          </button> -->
+          <button mat-icon-button (click)="goPage('group-permission')">
+            <mat-icon class="vap-icon" aria-hidden="false" aria-label="how_to_reg">how_to_reg</mat-icon>
+      
+          </button>
+          <!-- <button mat-icon-button>
+            <mat-icon class="vap-icon" aria-hidden="false" aria-label="list_alt">list_alt</mat-icon>
+      
+          </button> -->
+     
+        </div>  
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10,15, 20,25,30,35,40,45,50]"
+    showFirstLastButtons 
+    aria-label="Select page of periodic elements"   >
+  </mat-paginator>
+    
+
+   </div>
+
+   
+</div>

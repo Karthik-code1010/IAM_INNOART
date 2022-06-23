@@ -1,0 +1,189 @@
+<div class="container">
+    <h1 class="head-txt">
+        Global Data Privacy
+    </h1>
+    
+    <br>
+    <div fxLayout="column">
+      <p>Field Name</p>
+      <mat-form-field class="identity-input" appearance="outline" >
+               
+      
+        <input type="tel" matInput placeholder="Field Name" [(ngModel)]="fieldname">
+       
+      </mat-form-field>
+      <p>Data Type</p>
+      <mat-form-field class="identity-input" appearance="outline">
+        <mat-label>Data Type</mat-label>
+      
+        <mat-select [(value)]="datatype">  
+          <mat-option value="string">
+            String
+          </mat-option>
+          <mat-option value="int">
+            Int
+          </mat-option>
+          <mat-option value="float">
+            Float
+          </mat-option>
+          <mat-option value="double">
+            Double
+          </mat-option>
+         
+       
+          <!-- <mat-option *ngFor="let pv of peopleVal" 
+          [value]="pv.id">
+                {{pv.name}}
+              </mat-option> -->
+        </mat-select>
+       
+      </mat-form-field>
+
+    </div>
+    <div fxLayout="column">
+        <div>
+            <h3>Compliance Type</h3>
+        </div>
+        <div fxLayout="row"  fxLayout.xs="column"  style="font-size: 16px;">
+            <section fxLayout="row" fxLayout.xs="column"  fxLayoutGap="30px" [formGroup]="toppings">
+              
+                <p><mat-checkbox formControlName="GDPR" value="GDPR">GDPR</mat-checkbox></p>
+                <p><mat-checkbox formControlName="HIPPA" value="HIPPA">HIPPA</mat-checkbox></p>
+                <p><mat-checkbox formControlName="PII" value="PII">PII</mat-checkbox></p>
+                <p><mat-checkbox formControlName="PCI" value="PCI">PCI-DSS</mat-checkbox></p>
+                <p><mat-checkbox formControlName="ISO" value="ISO">ISO 27001</mat-checkbox></p>
+              </section>
+              
+             
+        </div>
+        
+
+    </div>
+    <br>
+    <div fxLayout="column"  fxLayoutGap="16px" style="font-size: 16px;">
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+            <div  fxFlex="20"  fxFlex.md="30" fxFlex.sm="30">   <p>Is Personal</p></div>
+            <div  fxFlex="20"  fxFlex.md="30" fxFlex.sm="30"> 
+                 <mat-radio-group [formControl]="ispersonal" fxLayout="row"  fxLayoutGap="30px"aria-label="">
+                <mat-radio-button value="Yes" >Yes</mat-radio-button>
+                <mat-radio-button value="No" >No</mat-radio-button>
+              </mat-radio-group></div>
+        </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Is Public</p></div>
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">  
+              <mat-radio-group  [formControl]="ispublic" fxLayout="row"  fxLayoutGap="30px" aria-label="">
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+                <mat-radio-button value="No">No</mat-radio-button>
+              </mat-radio-group></div>
+        </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Is Senstive</p></div>
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">  
+              <mat-radio-group  [formControl]="issensitive" fxLayout="row"  fxLayoutGap="30px"  aria-label="">
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+                <mat-radio-button value="No">No</mat-radio-button>
+              </mat-radio-group></div>
+        </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Is Restricted</p></div>
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30"> 
+               <mat-radio-group  [formControl]="isrestricted" fxLayout="row"  fxLayoutGap="30px" aria-label="">
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+                <mat-radio-button  value="No">No</mat-radio-button>
+              </mat-radio-group></div>
+        </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Is Internal Use Only</p></div>
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">  
+              <mat-radio-group   [formControl]="isinternal_use" fxLayout="row"  fxLayoutGap="30px" aria-label="">
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+                <mat-radio-button value="No">No</mat-radio-button>
+              </mat-radio-group></div>
+        </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+          <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Is Producted</p></div>
+          <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">  
+            <mat-radio-group  [formControl]="isprotected" fxLayout="row"  fxLayoutGap="30px" aria-label="">
+              <mat-radio-button value="Yes">Yes</mat-radio-button>
+              <mat-radio-button value="No">No</mat-radio-button>
+            </mat-radio-group></div>
+      </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Is Masked</p></div>
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">  
+              <mat-radio-group  [formControl]="ismasked" fxLayout="row"  fxLayoutGap="30px" aria-label="">
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+                <mat-radio-button value="No">No</mat-radio-button>
+              </mat-radio-group></div>
+        </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Is Mask Character</p></div>
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">  
+              <mat-radio-group   [formControl]="mask_character"  fxLayout="row"  fxLayoutGap="30px" aria-label="">
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+                <mat-radio-button value="No">No</mat-radio-button>
+              </mat-radio-group></div>
+        </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Is Encrypted</p></div>
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">  
+              <mat-radio-group  [formControl]="isencrpted" fxLayout="row"  fxLayoutGap="30px" aria-label="">
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+                <mat-radio-button value="No">No</mat-radio-button>
+              </mat-radio-group></div>
+        </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+          <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Encryption Techique</p></div>
+          <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">  
+            <mat-radio-group   [formControl]="encryptiontech"  fxLayout="row"  fxLayoutGap="30px" aria-label="">
+              <mat-radio-button value="Yes">Yes</mat-radio-button>
+              <mat-radio-button value="No">No</mat-radio-button>
+            </mat-radio-group></div>
+      </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Is Consent Required</p></div>
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">  
+              <mat-radio-group   [formControl]="consent_required"  fxLayout="row"  fxLayoutGap="30px" aria-label="">
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+                <mat-radio-button value="No">No</mat-radio-button>
+              </mat-radio-group></div>
+        </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Is Data Sharable</p></div>
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30"> 
+               <mat-radio-group   [formControl]="data_sharable" fxLayout="row"  fxLayoutGap="30px" aria-label="">
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+                <mat-radio-button value="No">No</mat-radio-button>
+              </mat-radio-group></div>
+        </div>
+        <div fxLayout="row" fxLayout.md="row" fxLayout.sm="row">
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30">   <p>Is Impect Level</p></div>
+            <div  fxFlex="20" fxFlex.md="30" fxFlex.sm="30"> 
+               <mat-radio-group [formControl]="impect_level" fxLayout="row"  fxLayoutGap="23px"aria-label="">
+                <mat-radio-button value="High">High</mat-radio-button>
+                <mat-radio-button value="Medium">Medium</mat-radio-button>
+                <mat-radio-button value="Low">Low</mat-radio-button>
+              </mat-radio-group></div>
+        </div>
+       
+        <div fxLayout="row" fxLayoutAlign="center center" class="bottom-btn"  fxLayoutGap="20px">
+            <div>
+                <button mat-raised-button style="width: 130px !important;" (click)="goPage('list-fields')">Cancel</button>
+            </div>
+            <div>
+               
+                <button mat-raised-button color="primary" style="width: 130px !important;" (click)="save()">Save</button>
+            </div>
+        </div>
+
+    </div>
+    
+   
+    <br>
+   
+
+    
+  
+
+</div>

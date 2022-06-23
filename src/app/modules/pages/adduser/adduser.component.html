@@ -1,0 +1,133 @@
+<div #title class="container">
+    <h1 class="head-txt">
+        Identity & Access Management
+    </h1>
+    <h2>
+        Add User
+    </h2>
+    <div  fxLayout="row"   fxLayoutGap="10px">
+     
+          
+            <div fxFlex="15"> 
+              <mat-form-field appearance="outline">
+              <mat-label>Organization</mat-label>
+              <mat-icon matPrefix style="color: orange;">business</mat-icon>
+              <mat-select [(value)]="orgselected"  >
+
+                <mat-option *ngFor="let lC of organizationVal" 
+                [value]="lC.id">
+                      {{lC.legalName.value}}
+                    </mat-option>
+         
+              </mat-select>
+             
+            </mat-form-field>
+             
+            </div>
+            <div fxFlex="1" style="margin-left: 15px;" fxFlexAlign="center">
+              <mat-icon>keyboard_arrow_right</mat-icon>
+            </div>
+            <div fxFlex="15">
+              <mat-form-field  appearance="outline">
+                <mat-label>People</mat-label>
+                <mat-icon matPrefix style="color: orange;">people</mat-icon>
+                <mat-select [(value)]="people_selected">  
+                 
+               
+                  <mat-option *ngFor="let pv of peopleVal" 
+                  [value]="pv.id">
+                        {{pv.name.value}}
+                      </mat-option>
+                </mat-select>
+               
+              </mat-form-field>
+           </div>
+           <div fxFlex="1" style="margin-left: 15px;" fxFlexAlign="center">
+              <mat-icon>keyboard_arrow_right</mat-icon>
+           </div>
+           <div fxFlex="15">
+            <mat-form-field  appearance="outline">
+              <mat-label>Role</mat-label>
+              <mat-icon matPrefix style="color: orange;">person</mat-icon>
+              <mat-select [(value)]="role_selected"> 
+                <mat-option *ngFor="let rv of roleVal" 
+                [value]="rv.id">
+                      {{rv.name.value}}
+                    </mat-option>
+               
+              
+              </mat-select>
+             
+            </mat-form-field>
+         </div>
+      
+           
+              
+        
+        
+    
+
+    </div>
+    <br>
+    <form [formGroup]="form4">
+      <formly-form [model]="model4" [fields]="fields4" [options]="options4" [form]="form4"></formly-form>
+     
+   
+    </form>
+    <div>
+      <mat-radio-group   [formControl]="active_inactive" fxLayout="row"  fxLayoutGap="30px" aria-label="">
+        <mat-radio-button value="Active">Active</mat-radio-button>
+        <mat-radio-button value="In Active">In Active</mat-radio-button>
+      </mat-radio-group>
+    
+    </div>
+
+    
+    <div fxLayout="row" fxLayoutAlign="center center" class="bottom-btn"  fxLayoutGap="20px">
+      <div>
+          <button mat-raised-button style="width: 130px !important;" type="reset" (click)="goPage('list-of-user')">Cancel</button>
+      </div>
+      <div>
+         
+          <button  mat-raised-button color="primary" style="width: 130px !important;" (click)="onSubmit()">Save</button>
+      </div>
+  </div>
+    <!-- <form [formGroup]="form">
+      <div  fxLayout="row"   fxLayout.xs="column"  fxLayoutGap="30px" fxLayoutAlign="start center"  >
+     
+     
+         
+        
+          <div fxFlex="33" >
+            <mat-form-field style="width: 100%;" appearance="outline" >
+               
+               
+                <input type="text" matInput placeholder="User Name" formControlName="username">
+               
+              </mat-form-field>
+          </div>
+          <div fxFlex="33" >
+            <mat-form-field style="width: 100%;"  appearance="outline" >
+               
+               
+                <input type="password" matInput placeholder="Password" formControlName="password">
+               
+              </mat-form-field>
+          </div>
+          <div fxFlex="33" >
+            <mat-form-field style="width: 100%;" appearance="outline" >
+               
+               
+                <input type="password" matInput placeholder="Retype Password" formControlName="retype_password">
+                <mat-icon matSuffix style="color: grey;">visibility</mat-icon>
+               
+              </mat-form-field>
+          </div>
+
+    </div>
+    <br>
+
+    </form> -->
+   
+   
+</div>

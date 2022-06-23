@@ -1,0 +1,261 @@
+<div class="container">
+    <h1 class="head-txt">Create Account</h1>
+    <div  fxLayout="row" fxLayoutGap="10px" >
+        <div>
+            <mat-icon style="font-size: 25px; color:orange;">account_balance</mat-icon>
+        </div>
+      
+        <h2>
+            Organization Details
+        </h2>
+    </div>
+
+    <div  fxLayout="column"   >
+     <!-- <div fxLayout="row" fxLayoutGap="30px">
+        <div  fxFlex="60">
+            <mat-form-field style="width: 100%;border-color: black !important;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Legal Name">
+               
+              </mat-form-field>
+        </div>
+        <div  fxFlex="40">
+            <mat-form-field style="width: 100%;" appearance="outline">
+                   
+                <mat-label>Deployment Type</mat-label>
+              <mat-select [(value)]="deployment_type">
+                 
+               
+                <mat-option value="MSI">MSI</mat-option>
+                <mat-option value="Client">Client</mat-option>
+                <mat-option value="MSI">OEM</mat-option>
+              </mat-select>
+             
+            </mat-form-field> 
+        </div>
+      
+
+     </div> -->
+     <form [formGroup]="form0"  >
+        <formly-form [model]="model0" [fields]="fields0" [options]="options0" [form]="form0"></formly-form>
+       
+     
+      </form>
+    
+     <!-- <div fxLayout="row" fxLayoutGap="30px">
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Organization Logo">
+               
+              </mat-form-field>
+        </div>
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Founder">
+               
+              </mat-form-field>
+        </div>
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Image Version">
+               
+              </mat-form-field>
+        </div>
+
+     </div>
+     <div fxLayout="row" fxLayoutGap="30px">
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="CIN">
+               
+              </mat-form-field>
+        </div>
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="GSTN">
+               
+              </mat-form-field>
+        </div>
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Tax ID">
+               
+              </mat-form-field>
+        </div>
+
+     </div> -->
+
+    </div>
+    <div  fxLayout="row" fxLayoutGap="10px" >
+        <div>
+            <mat-icon style="font-size: 30px; color:orange;">import_contacts</mat-icon>
+        </div>
+      
+        <h2>
+            Contact Information
+        </h2>
+    </div>
+
+    <div  fxLayout="column"   >
+        <form [formGroup]="form1"  >
+            <formly-form [model]="model1" [fields]="fields1" [options]="options1" [form]="form1"></formly-form>
+           
+         
+          </form>
+    
+<!--    
+     <div fxLayout="row" fxLayoutGap="30px">
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Email Address">
+               
+              </mat-form-field>
+        </div>
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Website">
+               
+              </mat-form-field>
+        </div>
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Telephone Number">
+               
+              </mat-form-field>
+        </div>
+
+     </div> -->
+
+    </div>
+
+    <div  fxLayout="row" fxLayoutGap="10px" >
+        <div>
+            <mat-icon style="font-size: 30px; color:orange;">location_on</mat-icon>
+        </div>
+      
+        <h2>
+            Local Information
+        </h2>
+    </div>
+
+    <div  fxLayout="column"   >
+        <form [formGroup]="form2"  >
+            <formly-form [model]="model2" [fields]="fields2" [options]="options2" [form]="form2"></formly-form>
+           
+         
+          </form>
+          <div fxLayout="row" fxLayoutAlign="center center" class="bottom-btn"  fxLayoutGap="20px">
+            <div>
+                <button mat-raised-button style="width: 130px !important;">Cancel</button>
+            </div>
+            <div>
+               
+                <button  mat-raised-button color="primary" style="width: 130px !important;">Save</button>
+            </div>
+            <div>
+               
+                <button  mat-raised-button color="primary" style="width: 130px !important;" (click)="accountSubmitData()">Save & Next</button>
+            </div>
+        </div>
+    
+   
+     <!-- <div fxLayout="row" fxLayoutGap="30px">
+        <div  fxFlex="33">
+            <div>
+                <mat-form-field style="width: 100%;" appearance="outline">
+                   
+                  
+                    <mat-select [(value)]="country">
+                     
+                      <mat-option value="India">India</mat-option>
+                      <mat-option value="USA">USA</mat-option>
+                      <mat-option value="China">China</mat-option>
+                    </mat-select>
+                   
+                  </mat-form-field> 
+                
+                
+            </div>
+        </div>
+        <div  fxFlex="33">
+            <div>
+                <mat-form-field style="width: 100%;" appearance="outline">
+                   
+                  
+                    <mat-select [(value)]="state">
+                     
+                      <mat-option value="chennai">chennai</mat-option>
+                      <mat-option value="State1">State1</mat-option>
+                      <mat-option value="State2">State3</mat-option>
+                    </mat-select>
+                   
+                  </mat-form-field> &nbsp;&nbsp;&nbsp;
+                
+                
+            </div>
+        </div>
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Locality">
+               
+              </mat-form-field>
+        </div>
+
+     </div>
+
+     <div fxLayout="row" fxLayoutGap="30px">
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Street Address">
+               
+              </mat-form-field>
+        </div>
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Post office Box Number">
+               
+              </mat-form-field>
+        </div>
+        <div  fxFlex="33">
+            <mat-form-field style="width: 100%;" appearance="outline" >
+       
+               
+                <input type="text" matInput placeholder="Postal Code">
+               
+              </mat-form-field>
+        </div>
+
+     </div>
+
+    </div>
+    -->
+
+
+
+   
+</div>

@@ -1,0 +1,233 @@
+<div class="container">
+    <h1 class="head-txt">
+        Identity & Access Management
+    </h1>
+    
+    <br>
+    <div>
+       <h4 class="head-txt-18">User Permissions</h4>
+
+    </div>
+    <div  fxLayout="row" fxLayoutGap="30px" fxLayoutAlign= "start baseline" >
+        <div> <mat-radio-button value="1">Group</mat-radio-button></div>
+           
+        <div>
+            <mat-form-field class="identity-dropdown" appearance="outline" style="width: 180px !important;">
+               
+               
+                <mat-select [(value)]="selected">
+                 
+                  <mat-option value="User">User</mat-option>
+                  <mat-option value="User1">User1</mat-option>
+                  <mat-option value="User22">User2</mat-option>
+                </mat-select>
+               
+              </mat-form-field> &nbsp;&nbsp;&nbsp;
+        </div>
+        <div> <mat-radio-button value="2">User</mat-radio-button></div>
+
+    </div>
+    <div fxLayout="row" fxLayout.md="column"  fxLayout.sm="column"  fxLayoutGap="30px">
+        <div   fxFlex="41"  fxFlex.md="50" fxFlex.sm="50" class="flex-container" fxLayout="column">
+
+           
+            <div>
+                <p>
+                    Permission for user aditya.chander 
+                </p>
+            </div>
+          
+            
+        </div>
+        <div fxFlex="59"  fxFlex.md="50" fxFlex.sm="50" >
+          
+            <div fxLayout="row" fxLayoutGap="50px">
+                <button class="roundbtn" mat-stroked-button>None</button>
+                <button  class="roundbtn" mat-stroked-button>View</button>
+                <button  class="roundbtn" mat-stroked-button>Add</button>
+                <button  class="roundbtn" mat-stroked-button>Add,View & Edit</button>
+                 
+            </div>
+          
+        </div>
+
+    </div>
+    <br>
+    <div fxLayout="column">
+       
+
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+            <!-- Position Column -->
+          
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="Analiticalhub">
+              <th mat-header-cell *matHeaderCellDef> Incident Management </th>
+              <td mat-cell *matCellDef="let element"> {{element.analyticlist}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="col1">
+              <th mat-header-cell *matHeaderCellDef>     
+                  <mat-radio-group [value]="1" aria-label="Select an option"> 
+                <mat-radio-button style="margin-left: 20px;" value="1"></mat-radio-button> 
+            </mat-radio-group> </th>
+              <td mat-cell *matCellDef="let i,element"> 
+                <mat-radio-group [value]="i" aria-label="Select an option"> 
+                    <mat-radio-button style="margin-left: 20px;" value="1"></mat-radio-button> 
+                 </mat-radio-group>
+                </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="col2">
+              <th mat-header-cell *matHeaderCellDef>    
+                   <mat-radio-group [value]="2" aria-label="Select an option"> 
+                <mat-radio-button style="margin-left: 20px;" value="2"></mat-radio-button> 
+            </mat-radio-group>
+        </th>
+              <td mat-cell *matCellDef="let i,element"> 
+                <mat-radio-group [value]="i" aria-label="Select an option"> 
+                    <mat-radio-button style="margin-left: 20px;" value="1"></mat-radio-button> 
+                 </mat-radio-group>
+                </td>
+            </ng-container>
+                <!-- Symbol Column -->
+            <ng-container matColumnDef="col3">
+                    <th mat-header-cell *matHeaderCellDef> 
+                          <mat-radio-group [value]="3" aria-label="Select an option"> 
+                        <mat-radio-button style="margin-left: 20px;" value="3"></mat-radio-button> 
+                    </mat-radio-group> </th>
+                    <td mat-cell *matCellDef="let i,element"> 
+                        
+                        <mat-radio-group [value]="i" aria-label="Select an option"> 
+                            <mat-radio-button style="margin-left: 20px;" value="1"></mat-radio-button> 
+                         </mat-radio-group>
+                    
+                    </td>
+             </ng-container>
+                   <!-- Symbol Column -->
+            <ng-container matColumnDef="col4">
+                    <th mat-header-cell *matHeaderCellDef>   <mat-radio-group [value]="4" aria-label="Select an option"> 
+                        <mat-radio-button style="margin-left: 20px;" value="4"></mat-radio-button> 
+                    </mat-radio-group></th>
+                    <td mat-cell *matCellDef="let i,element">
+                        <mat-radio-group [value]="i" aria-label="Select an option"> 
+                            <mat-radio-button style="margin-left: 20px;" value="1"></mat-radio-button> 
+                         </mat-radio-group>
+                        </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          
+
+    </div>
+    <br><br>
+    <div fxLayout="row" fxLayout.md="column"  fxLayout.sm="column" fxLayoutGap="30px">
+        <div   fxFlex="41"  fxFlex.md="50" fxFlex.sm="50" class="flex-container" fxLayout="column">
+           
+            <div>
+               
+            </div>
+          
+            
+        </div>
+        <div fxFlex="59"  fxFlex.md="50" fxFlex.sm="50">
+          
+            <div fxLayout="row" fxLayoutGap="50px">
+                <button class="roundbtn" mat-stroked-button>None</button>
+                <button  class="roundbtn" mat-stroked-button>View</button>
+                <button  class="roundbtn" mat-stroked-button>Add</button>
+                <button  class="roundbtn" mat-stroked-button>Add,View & Edit</button>
+                 
+            </div>
+          
+        </div>
+
+    </div>
+    <br><br>
+    <div fxLayout="column">
+        <table mat-table [dataSource]="data" class="mat-elevation-z8 demo-table">
+            <!-- Position Column -->
+          
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="col1">
+              <th mat-header-cell *matHeaderCellDef> Incident Management </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="col2">
+              <th mat-header-cell *matHeaderCellDef>     
+                  <mat-radio-group [value]="1" aria-label="Select an option"> 
+                <mat-radio-button style="margin-left: 20px;" value="1"></mat-radio-button> 
+            </mat-radio-group> </th>
+              <td mat-cell *matCellDef="let i,element"> 
+                <mat-radio-group [value]="i" aria-label="Select an option"> 
+                    <mat-radio-button style="margin-left: 20px;" value="1"></mat-radio-button> 
+                 </mat-radio-group>
+                </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="col3">
+              <th mat-header-cell *matHeaderCellDef>    
+                   <mat-radio-group [value]="2" aria-label="Select an option"> 
+                <mat-radio-button style="margin-left: 20px;" value="2"></mat-radio-button> 
+            </mat-radio-group>
+        </th>
+              <td mat-cell *matCellDef="let i,element"> 
+                <mat-radio-group [value]="i" aria-label="Select an option"> 
+                    <mat-radio-button style="margin-left: 20px;" value="1"></mat-radio-button> 
+                 </mat-radio-group>
+                </td>
+            </ng-container>
+                <!-- Symbol Column -->
+            <ng-container matColumnDef="col4">
+                    <th mat-header-cell *matHeaderCellDef> 
+                          <mat-radio-group [value]="3" aria-label="Select an option"> 
+                        <mat-radio-button style="margin-left: 20px;" value="3"></mat-radio-button> 
+                    </mat-radio-group> </th>
+                    <td mat-cell *matCellDef="let i,element"> 
+                        
+                        <mat-radio-group [value]="i" aria-label="Select an option"> 
+                            <mat-radio-button style="margin-left: 20px;" value="1"></mat-radio-button> 
+                         </mat-radio-group>
+                    
+                    </td>
+             </ng-container>
+                   <!-- Symbol Column -->
+            <ng-container matColumnDef="col5">
+                    <th mat-header-cell *matHeaderCellDef>   <mat-radio-group [value]="4" aria-label="Select an option"> 
+                        <mat-radio-button style="margin-left: 20px;" value="4"></mat-radio-button> 
+                    </mat-radio-group></th>
+                    <td mat-cell *matCellDef="let i,element">
+                        <mat-radio-group [value]="i" aria-label="Select an option"> 
+                            <mat-radio-button style="margin-left: 20px;" value="1"></mat-radio-button> 
+                         </mat-radio-group>
+                        </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+          </table>
+          
+          
+    </div>
+
+    
+  
+<br>
+    <div fxLayout="row" fxLayoutAlign="center center" class="bottom-btn"  fxLayoutGap="20px">
+        <div>
+            <button mat-raised-button style="width: 130px !important;" (click)="goPage('list-of-user')">Cancel</button>
+        </div>
+        <div>
+           
+            <button mat-raised-button color="primary" style="width: 130px !important;">Save</button>
+        </div>
+    </div>
+</div>
