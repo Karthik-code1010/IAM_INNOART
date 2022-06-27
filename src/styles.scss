@@ -87,7 +87,7 @@ form.normal-form{
 
  //sidenav icon size
  .icon-display {
-    transform: scale(1.5);
+    transform: scale(1.2);
   
     
  }
@@ -186,6 +186,25 @@ form.normal-form{
   .color-blue{
       color: #3f51b5;
   }
+
+  .input-error {
+    border: red 1px solid;
+}
+.error_msg
+{
+
+    position: absolute;
+    color:  red !important;
+    top: 50px;
+}
+.form-control.ng-untouched,
+.form-control.ng-valid {
+border-color: #ccc !important;
+}
+.form-control.ng-invalid{
+  border-color: red !important;
+  
+}
 
   // mat-header-cell, mat-cell {
   //   text-align: center !important;

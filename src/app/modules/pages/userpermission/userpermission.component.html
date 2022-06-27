@@ -17,9 +17,10 @@
                
                 <mat-select [(value)]="selected">
                  
-                  <mat-option value="User">User</mat-option>
-                  <mat-option value="User1">User1</mat-option>
-                  <mat-option value="User22">User2</mat-option>
+                    <mat-option *ngFor="let lC of userdataval" 
+                    [value]="lC.id">
+                          {{lC.username.value}}
+                        </mat-option>
                 </mat-select>
                
               </mat-form-field> &nbsp;&nbsp;&nbsp;
@@ -33,7 +34,7 @@
            
             <div>
                 <p>
-                    Permission for user aditya.chander 
+                    Permission for user {{user_name}}
                 </p>
             </div>
           

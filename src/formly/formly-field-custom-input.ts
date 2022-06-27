@@ -16,6 +16,8 @@ import { FieldType } from '@ngx-formly/core';
     <mat-label>{{to.label}}</mat-label>
     <input style="width: 100% !important;"  [type]="to.type?to.type:'text'"  [formControl]="formControl" [formlyAttributes]="field" matInput  placeholder="{{to.placeholder}}" >
    
+    <!-- <div class="error_msg"  *ngIf="showError"><formly-validation-message [field]="field"></formly-validation-message></div>
+     -->
   </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 

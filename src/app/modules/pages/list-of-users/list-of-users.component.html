@@ -6,19 +6,19 @@
     <br>
     <div  fxLayout="row" fxLayout.md="column"  fxLayout.sm="column"  fxLayout.xs="column"  fxLayoutGap="40px">
       <div fxFlex="33" ><mat-card fxLayout="row"  [class.mat-elevation-z8]="true" fxLayoutAlign="space-around center"> 
-        <mat-icon>storage</mat-icon>
+        <mat-icon>group_sharp</mat-icon>
         <p class="head-txt-18" style="margin-top: 10px;">Total Users</p>
           <p class="head-txt-18">{{userCount}}</p>
         </mat-card>
     </div>
     <div fxFlex="33" ><mat-card fxLayout="row" [class.mat-elevation-z8]="true" fxLayoutAlign="space-around center"> 
-        <mat-icon>assignmentind</mat-icon>
+        <mat-icon style="color: green;">group_sharp</mat-icon>
         <p class="head-txt-18" style="margin-top: 10px;">Active Users</p>
           <p class="head-txt-18">{{userActiveCount}}</p>
         </mat-card>
     </div>
     <div fxFlex="33" ><mat-card fxLayout="row" [class.mat-elevation-z8]="true" fxLayoutAlign="space-around center"> 
-        <mat-icon>assignmentind
+        <mat-icon style="color: red;">group_sharp
         </mat-icon>
         <p class="head-txt-18" style="margin-top: 10px;">In Active Users</p>
           <p class="head-txt-18">{{userInActiveCount}}</p>
@@ -84,7 +84,7 @@
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> 
         
-        <div fxLayout="row"> <mat-icon style="font-size: 20px; color:orange">person_outline</mat-icon>Name</div> 
+        <div fxLayout="row"> <mat-icon style="font-size: 20px; color:orange">perm_contact_calendar</mat-icon>Name</div> 
         
       </th>
       <td mat-cell *matCellDef="let element" style="margin-left: 40px;"> {{element.username.value}} </td>
@@ -124,7 +124,7 @@
       <th mat-header-cell *matHeaderCellDef> <div fxLayout="row"> <mat-icon style="font-size: 20px; color:orange">call_to_action</mat-icon>Action</div></th>
       <td mat-cell *matCellDef="let element">
       <div>
-        <button mat-icon-button (click)="editlistOfUsers(element.id)">
+        <button mat-icon-button  matTooltip="Edit" (click)="editlistOfUsers(element.id)">
           <mat-icon class="vap-icon" aria-hidden="false" aria-label="create">create</mat-icon>
     
         </button>
@@ -132,11 +132,11 @@
           <mat-icon class="vap-icon" aria-hidden="false" aria-label="visibility">visibility</mat-icon>
     
         </button> -->
-        <button mat-icon-button (click)="goPage('user-permission')">
-          <mat-icon class="vap-icon" aria-hidden="false" aria-label="how_to_reg">how_to_reg</mat-icon>
+        <button mat-icon-button matTooltip="User Permissions" (click)="goUserPermission(element.id)">
+          <mat-icon class="vap-icon" aria-hidden="false" aria-label="how_to_reg">key</mat-icon>
     
         </button>
-        <button mat-icon-button  (click)="gostorage(element.id)">
+        <button mat-icon-button  matTooltip="Data Access" (click)="gostorage(element.id)">
           <mat-icon class="vap-icon" aria-hidden="false" aria-label="storage">storage</mat-icon>
     
         </button>
@@ -154,9 +154,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10,15, 20,25,30,35,40,45,50]"
+  <mat-paginator [length]="userCount"   (page)="pageChangeEvent($event)"  [pageSizeOptions]="[10,15, 20,25,30,35,40,45,50]"
   showFirstLastButtons 
-  aria-label="Select page of periodic elements"   >
+  aria-label="Select page of periodic elements"    >
 </mat-paginator>
   
   

@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddApplicationDetailsComponent } from './add-application-details/add-application-details.component';
-import { AccountsComponent } from './modules/pages/accounts/accounts.component';
+
 import { AdduserComponent } from './modules/pages/adduser/adduser.component';
-import { CreateAccountDetailsComponent } from './modules/pages/create-account-details/create-account-details.component';
-import { CreateAccountThemeComponent } from './modules/pages/create-account-theme/create-account-theme.component';
-import { CreateAccountComponent } from './modules/pages/create-account/create-account.component';
+
 import { DataPrivacyComponent } from './modules/pages/data-privacy/data-privacy.component';
 import { GlobaldataprivacyComponent } from './modules/pages/globaldataprivacy/globaldataprivacy.component';
 import { GrouppermissionComponent } from './modules/pages/grouppermission/grouppermission.component';
@@ -26,10 +23,7 @@ const routes: Routes = [
   {path:"add-user", component: AdduserComponent},  //ListOfGroupComponent
   {path:"list-of-group", component: ListOfGroupComponent}, // ListOfFieldsComponent
   {path:"list-fields", component: ListOfFieldsComponent},  //AccountsComponent
-  {path:"accounts", component: AccountsComponent},  //CreateAccountComponent
-  {path:"create-accounts", component: CreateAccountComponent},  //CreateAccountDetailsComponent
-  {path:"create-accounts-details", component: CreateAccountDetailsComponent}, //CreateAccountThemeComponent
-  {path:"create-accounts-theme", component: CreateAccountThemeComponent}, 
+
 ];
 
 @NgModule({

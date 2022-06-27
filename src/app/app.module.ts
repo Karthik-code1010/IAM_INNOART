@@ -22,12 +22,8 @@ import { AdduserComponent } from './modules/pages/adduser/adduser.component';
 import { ListOfGroupComponent } from './modules/pages/list-of-group/list-of-group.component';
 import { ListOfFieldsComponent } from './modules/pages/list-of-fields/list-of-fields.component';
 import { AddgroupnameDialogComponent } from './modules/pages/addgroupname-dialog/addgroupname-dialog.component';
-import { AccountsComponent } from './modules/pages/accounts/accounts.component';
-import { AccountDialogComponent } from './modules/pages/account-dialog/account-dialog.component';
-import { CreateAccountComponent } from './modules/pages/create-account/create-account.component';
-import { CreateAccountDetailsComponent } from './modules/pages/create-account-details/create-account-details.component';
-import { CreateAccountThemeComponent } from './modules/pages/create-account-theme/create-account-theme.component';
-import { ColumnDialog } from './modules/pages/column-dialog/column-dialog';
+
+
 
 import { FormlyFieldCustomSelect } from 'src/formly/formly-field-custom-select';
 
@@ -55,6 +51,9 @@ import { FormsModule } from '@angular/forms';
 import { FormlyFieldCustomDatePicker } from 'src/formly/formly-field-custom-datepicker';
 import { FormlyFieldCustomFile } from 'src/formly/formly-field-custom-file';
 
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { ColumnDialog } from './modules/pages/column-dialog/column-dialog';
+
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -77,17 +76,14 @@ import { FormlyFieldCustomFile } from 'src/formly/formly-field-custom-file';
     ListOfGroupComponent,
     ListOfFieldsComponent,
     AddgroupnameDialogComponent,
-    AccountsComponent,
-    AccountDialogComponent,
-    CreateAccountComponent,
-    CreateAccountDetailsComponent,
-    CreateAccountThemeComponent,
+  
 
 
    
    
   ],
   imports: [
+    MaterialFileInputModule,
     FormsModule,
     HttpClientModule,
     MatDialogModule,

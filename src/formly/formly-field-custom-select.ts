@@ -16,7 +16,9 @@ import { FieldType } from '@ngx-formly/core';
               
          
               </mat-select>
-             
+
+             <!-- <div class="error_msg"  *ngIf="showError"><formly-validation-message [field]="field"></formly-validation-message></div>
+             -->
             </mat-form-field>
 
 

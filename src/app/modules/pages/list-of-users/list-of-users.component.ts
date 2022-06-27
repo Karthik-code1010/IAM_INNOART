@@ -35,6 +35,8 @@ export class ListOfUsersComponent implements OnInit {
   userActiveCount: any =0;
   userInActiveCount: any = 0;
   searchname:any;
+  offset: number = 0;
+  limit: any = 10;
   constructor(private dialog: MatDialog,public dataService: DataService,private router: Router,) { }
 
   ngOnInit(): void {
@@ -65,6 +67,20 @@ export class ListOfUsersComponent implements OnInit {
       
       });
 
+  }
+  pageChangeEvent(event:any) {
+    console.log(event)
+     this.offset = ((event.pageIndex + 1) - 1) * event.pageSize;
+      this.limit = event.pageSize;
+    console.log(this.offset)
+    console.log(this.limit);
+       this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=User&limit="+this.limit+"&offset="+this.offset).subscribe(
+      (response: any) => {
+        this.userdataval = response["data"];
+        console.log(response)
+        console.log(response["data"]);
+        console.log('list of user',this.userdataval)
+      });
   }
   getUserCount(){
     this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=User&options=count").subscribe(
@@ -149,7 +165,7 @@ export class ListOfUsersComponent implements OnInit {
 
     getuserData(){
       console.log(this.dataService.NODE_API);
-      this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=User").subscribe(
+      this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=User&limit="+this.limit+"&offset="+this.offset).subscribe(
       (response: any) => {
         this.userdataval = response["data"];
         console.log(response)
@@ -169,7 +185,10 @@ export class ListOfUsersComponent implements OnInit {
     this.router.navigateByUrl(page);
   }
   gostorage(unameid:any){
-    this.router.navigateByUrl('/identity-access', { state: { udname:unameid  } });
+    this.router.navigateByUrl('/identity-access', { state: { uname_id:unameid  } });
+  }
+  goUserPermission(uid:any){
+    this.router.navigateByUrl('/user-permission', { state: { userId:uid  } });
   }
 
 }

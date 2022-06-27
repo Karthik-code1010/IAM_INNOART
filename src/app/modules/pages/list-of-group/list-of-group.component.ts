@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { AddgroupnameDialogComponent } from '../addgroupname-dialog/addgroupname-dialog.component';
 import { ColumnDialog } from '../column-dialog/column-dialog';
+
 import { DialogService } from '../dialog.service';
 
 
@@ -32,6 +33,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class ListOfGroupComponent implements OnInit {
   listGroupVal: any = [];
   searchGroup: any;
+  listLength: any;
+  offset: number = 0;
+  limit: any = 10;
   constructor(private dialog2: MatDialog,public dataService: DataService,private router: Router,) { }
 
  
@@ -43,7 +47,7 @@ export class ListOfGroupComponent implements OnInit {
         this.displayedColumns.push(element.name);
       }
     });
-
+    this.getGroupCount();
     this.getListGroupData();
   }
 
@@ -59,6 +63,22 @@ export class ListOfGroupComponent implements OnInit {
        }
       
       });
+  }
+
+  pageChangeEvent(event:any) {
+    console.log(event)
+    this.offset = ((event.pageIndex + 1) - 1) * event.pageSize;
+     this.limit = event.pageSize;
+   console.log(this.offset)
+   console.log(this.limit);
+   this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserGroup&limit="+this.limit+"&offset="+this.offset).subscribe(
+    (response: any) => {
+      this.listGroupVal = response["data"];
+    
+      console.log(response)
+      console.log(response["data"]);
+      console.log('list of Group',this.listGroupVal)
+    });
   }
  // displayedColumns: string[] = ['id', 'groupname', 'status', 'createdat','updatedat','createdby','action'];
   //dataSource = ELEMENT_DATA;
@@ -117,14 +137,25 @@ export class ListOfGroupComponent implements OnInit {
 
   getListGroupData(){
     console.log(this.dataService.NODE_API);
-    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserGroup").subscribe(
+    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserGroup&limit="+this.limit+"&offset="+this.offset).subscribe(
     (response: any) => {
       this.listGroupVal = response["data"];
+    
       console.log(response)
       console.log(response["data"]);
       console.log('list of Group',this.listGroupVal)
     });
 
+  }
+  getGroupCount(){
+    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserGroup&options=count").subscribe(
+      (response2: any) => {
+          this.listLength = response2["data"];
+          console.log(response2)
+          console.log(response2["data"]);
+          console.log('group Count',this.listLength)
+      });
+      
   }
 
   editGroupName(gname_id:any){

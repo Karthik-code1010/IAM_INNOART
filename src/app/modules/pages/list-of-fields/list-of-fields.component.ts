@@ -33,12 +33,16 @@ export class ListOfFieldsComponent implements OnInit {
   dataSource = ELEMENT_DATA;
   listFieldVal: any = [];
   searchFields:any;
+  fieldLength: any;
+  offset: number = 0;
+  limit: any = 10;
   
  
   constructor(private dialog: MatDialog,private router: Router,public dataService: DataService,) { }
 
   ngOnInit(): void {
     this.getDataField();
+    this.getGlobalDataCount();
     this.displayedColumns = [];
     this.allColumns.forEach(element => {
       if (element.activeFlag) {
@@ -61,10 +65,37 @@ export class ListOfFieldsComponent implements OnInit {
       });
 
   }
+  getGlobalDataCount(){
+    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=GlobalDataPrivacy&options=count").subscribe(
+      (response2: any) => {
+          this.fieldLength = response2["data"];
+          console.log(response2)
+          console.log(response2["data"]);
+          console.log('list of fieldLength Count',this.fieldLength)
+      });
+      
+  }
+  
+  pageChangeEvent(event:any) {
+    console.log(event)
+    this.offset = ((event.pageIndex + 1) - 1) * event.pageSize;
+     this.limit = event.pageSize;
+   console.log(this.offset)
+   console.log(this.limit);
+   this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=GlobalDataPrivacy&limit="+this.limit+"&offset="+this.offset).subscribe(
+    (response: any) => {
+      this.listFieldVal = response["data"];
+   
+      console.log(response)
+      console.log(response["data"]);
+      console.log('list of Group',this.listFieldVal)
+    });
+  }
   getDataField(){
-    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=GlobalDataPrivacy").subscribe(
+    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=GlobalDataPrivacy&limit="+this.limit+"&offset="+this.offset).subscribe(
       (response: any) => {
         this.listFieldVal = response["data"];
+     
         console.log(response)
         console.log(response["data"]);
         console.log('list of Group',this.listFieldVal)

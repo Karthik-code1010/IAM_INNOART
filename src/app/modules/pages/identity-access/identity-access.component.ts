@@ -49,6 +49,10 @@ export class IdentityAccessComponent implements OnInit {
   unamedis: any;
 
    old_temp:any = []
+  user_id: any;
+
+  
+  userTableAD:FormControl = new FormControl({}, []);
   //  clist:any = [{
   //   "type": "Property",
   //   "value": "deviceId",
@@ -68,7 +72,7 @@ export class IdentityAccessComponent implements OnInit {
   confirmCancelDialog() {
     this.dialog
       .open(DialogboxComponent, {
-        data:this.dialogtableid,
+        data:{table_id:this.dialogtableid,user_id:this.user_id},
         width: '1400px',
         height: 'auto',
         disableClose: true,
@@ -94,12 +98,18 @@ export class IdentityAccessComponent implements OnInit {
     this.getMetaData();
     console.log('history.state',history.state);
     this.displayusername = history.state
+
+    this.user_id = this.displayusername.uname_id
+    console.log(' this.user_id ',this.user_id);
     this.getUserNameDb();
+
+
+    this.getAllowDeny(this.user_id);
   }
 
   getUserNameDb(){
     console.log(this.displayusername.udname)
-    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=User&id="+this.displayusername.udname).subscribe(
+    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=User&id="+this.displayusername.uname_id).subscribe(
       (response2: any) => {
        if(response2["data"].length>0){
        
@@ -158,10 +168,19 @@ export class IdentityAccessComponent implements OnInit {
      
      
   }
+  getAllowDeny(usr_id:any){
+    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserDataAccessTable&q=refUserId=="+usr_id).subscribe(
+      (response3: any) => {
+      if(response3["data"].length > 0)  {
+        console.log('UserData-Access table',response3["data"]);
+      }
+      });
+
+  }
   changeDennyClick(tableid:any,tname:any){
 
 
-    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserDataAccessTable&q=refTableMetaData=="+tableid).subscribe(
+    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserDataAccessTable&q=refTableMetaData=="+tableid+";refUserId=="+this.user_id).subscribe(
       (response3: any) => {
       if(response3["data"].length > 0)  {
         console.log(tableid);
@@ -169,8 +188,13 @@ export class IdentityAccessComponent implements OnInit {
         var post_val1 =  {
           "status": {
             "type": "Property",
-            "value": "In Active"
-        }   
+            "value": "Active"
+        }  ,
+        "refUserId": {
+          "type": "Relationship",
+          "value": this.user_id
+        
+      }, 
                
      }
     
@@ -194,7 +218,7 @@ export class IdentityAccessComponent implements OnInit {
                  },
           "refUserId": {
                      "type": "Relationship",
-                     "value": ""
+                     "value": this.user_id
                    
                  },
          "refApplicationId": {
@@ -207,13 +231,17 @@ export class IdentityAccessComponent implements OnInit {
                      "value": tableid
                    
                  },
+          "refOrganizationID": {
+                  "type": "Relationship",
+                  "value": ""
+                },
           "tableName":{
                    "type": "Property",
                      "value": tname
              },
           "status":{
                    "type": "Property",
-                     "value": "In Active"
+                     "value": "Active"
              }
             
                
@@ -243,7 +271,7 @@ export class IdentityAccessComponent implements OnInit {
   allowClick(tableid:any,tname:any){
 
 
-    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserDataAccessTable&q=refTableMetaData=="+tableid).subscribe(
+    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserDataAccessTable&q=refTableMetaData=="+tableid+";refUserId=="+this.user_id).subscribe(
       (response3: any) => {
       if(response3["data"].length > 0)  {
         console.log(tableid);
@@ -251,8 +279,13 @@ export class IdentityAccessComponent implements OnInit {
         var post_val1 =  {
           "status": {
             "type": "Property",
-            "value": "Active"
-        }   
+            "value": "In Active"
+        },
+        "refUserId": {
+          "type": "Relationship",
+          "value": this.user_id
+        
+      }, 
                
      }
     
@@ -276,7 +309,7 @@ export class IdentityAccessComponent implements OnInit {
                  },
           "refUserId": {
                      "type": "Relationship",
-                     "value": ""
+                     "value": this.user_id
                    
                  },
          "refApplicationId": {
@@ -289,13 +322,17 @@ export class IdentityAccessComponent implements OnInit {
                      "value": tableid
                    
                  },
+          "refOrganizationID": {
+            "type": "Relationship",
+            "value": ""
+          },
           "tableName":{
                    "type": "Property",
                      "value": tname
              },
           "status":{
                    "type": "Property",
-                     "value": "Active"
+                     "value": "In Active"
              }
             
                
@@ -320,6 +357,10 @@ export class IdentityAccessComponent implements OnInit {
       el.style.display = 'block';
 
   }
+
+
+
+
   columnready(tid:any,tname:any){
 
     this.dialogtableid = tid;
@@ -356,7 +397,7 @@ export class IdentityAccessComponent implements OnInit {
           this.columndata=this.clist;
           console.log('kkllklk',this.columndata);
 
-          this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserDataAccessColumns&q=refTableMetaData=="+ this.dialogtableid+";status==Active").subscribe(
+          this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserDataAccessColumns&q=refTableMetaData=="+ this.dialogtableid+";status==Active;refUserId=="+this.user_id).subscribe(
             (responseColumn: any) => {
               console.log(this.metaDataArray)
               console.log('this.dialogtableid',this.dialogtableid)
@@ -438,13 +479,15 @@ export class IdentityAccessComponent implements OnInit {
          });// Then remove
        }
 
-       console.log(this.fieldnamearray);
+       console.log('this.fieldnamearray',this.fieldnamearray);
 
   }
   checkbool:any;
   clearcheckbox(){
    // this.checkbool=false;
     this.fieldnamearray=[];
+    this.router.navigateByUrl('/list-of-user');
+
   }
 
   columelementaccess(){
@@ -453,7 +496,7 @@ export class IdentityAccessComponent implements OnInit {
 
     console.log(this.fieldnamearray);
     var colarray = [];
-    if(this.fieldnamearray.length > 0){
+   // if(this.fieldnamearray.length > 0){
 
 
     var ls_col_id =   localStorage.getItem('currentColumnId');
@@ -500,7 +543,7 @@ export class IdentityAccessComponent implements OnInit {
   },
   "refUserId": {
       "type": "Relationship",
-      "value": ""
+      "value":this.user_id
     
   },
   "refApplicationId": {
@@ -583,7 +626,7 @@ export class IdentityAccessComponent implements OnInit {
   },
   "refUserId": {
       "type": "Relationship",
-      "value": ""
+      "value": this.user_id
     
   },
   "refApplicationId": {
@@ -638,10 +681,7 @@ export class IdentityAccessComponent implements OnInit {
 
 
 
-    }else{
-
-    }
-
+  //  }
   }
   togglechanged(){
     console.log('toggle ', this.columnidval);

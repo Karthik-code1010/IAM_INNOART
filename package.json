@@ -24,6 +24,7 @@
     "@ngx-formly/core": "^5.12.2",
     "js-sha512": "^0.8.0",
     "motion": "^10.9.0",
+    "ngx-material-file-input": "^3.0.0",
     "ngx-toastr": "^14.3.0",
     "popmotion": "^11.0.3",
     "rxjs": "~7.4.0",

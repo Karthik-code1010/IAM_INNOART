@@ -121,9 +121,10 @@
                 <!-- Weight Column -->
                 <ng-container matColumnDef="tableaccess">
                   <th mat-header-cell *matHeaderCellDef>Table Access</th>
-                  <td matRipple mat-cell *matCellDef="let element"><mat-radio-group aria-label="Select an option">
-                    <mat-radio-button value="Allow" [checked]="true" (click)="allowClick(element.id,element.tableName.value)">Allow</mat-radio-button>
-                    <mat-radio-button value="{{element.id}}"  (change)="changeDennyClick(element.id,element.tableName.value)">Deny</mat-radio-button>
+                  <td matRipple mat-cell *matCellDef="let element">
+                    <mat-radio-group aria-label="Select an option"  [formControl]="userTableAD">
+                    <mat-radio-button value="Active"  (change)="allowClick(element.id,element.tableName.value)">Allow</mat-radio-button>
+                    <mat-radio-button value="In Active"  (change)="changeDennyClick(element.id,element.tableName.value)">Deny</mat-radio-button>
                   </mat-radio-group></td>
                 </ng-container>
               

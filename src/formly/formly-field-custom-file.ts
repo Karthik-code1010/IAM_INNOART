@@ -4,7 +4,12 @@ import { FieldType } from '@ngx-formly/core';
 @Component({
   selector: 'formly-field-custom-file',
   template: `
-  <mat-card class="input-container" style="margin-top: 5px;">
+   <mat-form-field appearance="outline"  style="width: 100% !important;" >
+      <ngx-mat-file-input [formControl]="formControl" [formlyAttributes]="field" matInput  placeholder="{{to.placeholder}}" ></ngx-mat-file-input>
+      <mat-icon matSuffix style="color:grey;">cloud_upload</mat-icon>
+    </mat-form-field>
+
+  <!-- <mat-card class="input-container" style="margin-top: 5px;" >
   <button #file mat-button color="primary">Organization Logo
   <input type="file" #myInput 
   style="color:block; opacity: 0; position:absolute; left:0px; top:0px; width:100%; height:100%;"
@@ -15,7 +20,9 @@ import { FieldType } from '@ngx-formly/core';
   >
   </button>
   {{files|json}}
-</mat-card>
+
+ 
+</mat-card> -->
  
  
   `,

@@ -73,7 +73,7 @@ export class DialogboxComponent implements OnInit {
     if(submitdata.quantities[0]['gross']!='' && submitdata.quantities[0]['price']!='' && submitdata.quantities[0]['sal']!='' && submitdata.quantities[0]['and_or']!= ''){
       console.log('true part');
       
-    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=TableMetaData&id="+this.data).subscribe(
+    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=TableMetaData&id="+this.data.table_id).subscribe(
       (response: any) => {
        // this.metaData = response["data"];
         console.log(response)
@@ -102,7 +102,7 @@ export class DialogboxComponent implements OnInit {
         },
         "refUserId": {
             "type": "Relationship",
-            "value": ""
+            "value": this.data.user_id
         },
         "refApplicationId": {
             "type": "Relationship",
@@ -110,7 +110,7 @@ export class DialogboxComponent implements OnInit {
         },
         "refTableMetaData": {
             "type": "Relationship",
-            "value": this.data
+            "value": this.data.table_id
         },
       
     
@@ -180,8 +180,8 @@ export class DialogboxComponent implements OnInit {
 
    
     console.log('sks',this.data)
-    console.log('sks',this.data)
-    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=TableMetaData&id="+this.data).subscribe(
+    console.log('sks',this.data.table_id)
+    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=TableMetaData&id="+this.data.table_id).subscribe(
       (response: any) => {
         //this.columndata = response["data"];
         if(response["data"].length>0){

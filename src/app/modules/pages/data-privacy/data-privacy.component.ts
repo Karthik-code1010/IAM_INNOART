@@ -1,5 +1,9 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { animate } from 'popmotion';
+import { CommonService } from 'src/app/common.service';
+import { DataService } from 'src/app/service/data.service';
 
 
 
@@ -46,7 +50,9 @@ export class DataPrivacyComponent implements OnInit {
     
   }
 
-  constructor(private renderer: Renderer2,) { }
+  constructor(private commonService:CommonService,private dialog: MatDialog,private renderer: Renderer2,private el: ElementRef,private router: Router, private dataService: DataService,) {
+   
+  }
  
   ngOnInit(): void {
   }

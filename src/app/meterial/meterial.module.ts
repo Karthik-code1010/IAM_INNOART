@@ -22,11 +22,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule} from '@angular/material/core';
 
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
   imports: [
+    MatTooltipModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatTabsModule,
@@ -51,6 +52,7 @@ import { MatNativeDateModule} from '@angular/material/core';
     MatCardModule
   ],
   exports: [
+    MatTooltipModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatTabsModule,
