@@ -578,14 +578,50 @@ export class IdentityAccessComponent implements OnInit {
   columelementaccess(){
     console.log('save btn function',this.metaDataArray)
 
+    console.log('column field',this.columndata)
+
 
     console.log(this.fieldnamearray);
+    var col_count = 0;
+    this.columndata.forEach((element:any) => { 
+
+      if(!element.checked.value){
+        col_count++;
+       } 
+    })
+    console.log('column false Count==> ',col_count,' col array count=>',this.columndata.length)
     var colarray = [];
-   // if(this.fieldnamearray.length > 0){
+
+    if(col_count == this.columndata.length){
+      this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserDataAccessColumns&q=refTableMetaData=="+ this.dialogtableid+";status==Active;refUserId=="+this.user_id).subscribe(
+        (responseColumn: any) => {
+          console.log(responseColumn);
+          if(responseColumn["data"].length > 0){
+            var patch_val3 =  {
+              "status": {
+                "type": "Property",
+                "value": "Inactive"
+              }   
+              
+                   
+            }
+            this.dataService.patchData(patch_val3, this.dataService.NODE_API + '/api/service/entities/'+responseColumn["data"][0]["id"]+'/UserDataAccessColumns').subscribe((response7: any) => {
+           
+              //this.commonService.triggerToast({ type: 'success', title: "", msg: "inactive" })
+            })
 
 
+          }
+
+        })
+
+      
+    }else{
+      console.log('user already selected')
+      
     var ls_col_id =   localStorage.getItem('currentColumnId');
     if(ls_col_id != ''){
+      console.log('old user');
       var post_val3 =  {
         "status": {
           "type": "Property",
@@ -686,7 +722,7 @@ export class IdentityAccessComponent implements OnInit {
     }
 
     if(ls_col_id == ''){
-      
+      console.log('new user');
     var  feildIndex =0;
     var postObj:any = {
    "type": "UserDataAccessColumns",
@@ -765,10 +801,14 @@ export class IdentityAccessComponent implements OnInit {
 
     }
    
+    }
+  
 
 
 
-  //  }
+
+
+   
   }
   togglechanged(){
     console.log('toggle ', this.columnidval);
