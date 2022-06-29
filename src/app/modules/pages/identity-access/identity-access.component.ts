@@ -66,6 +66,8 @@ export class IdentityAccessComponent implements OnInit {
   // }];
   constructor(private commonService:CommonService,private dialog: MatDialog,private renderer: Renderer2,private el: ElementRef,private router: Router, private dataService: DataService,) {
    
+    // console.log('constructor this.user_id ',this.user_id); //undefined
+   
   }
  
   
@@ -95,7 +97,7 @@ export class IdentityAccessComponent implements OnInit {
  displayusername:any
 
   ngOnInit(): void {
-    this.getMetaData();
+   
     console.log('history.state',history.state);
     this.displayusername = history.state
 
@@ -103,8 +105,13 @@ export class IdentityAccessComponent implements OnInit {
     console.log(' this.user_id ',this.user_id);
     this.getUserNameDb();
 
+    this.getMetaData();
+   // this.getAllowDeny(this.user_id);
 
-    this.getAllowDeny(this.user_id);
+     if(this.user_id == undefined){
+      this.router.navigateByUrl('/list-of-user');
+
+    }
   }
 
   getUserNameDb(){
@@ -161,9 +168,60 @@ export class IdentityAccessComponent implements OnInit {
       this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=TableMetaData").subscribe(
       (response: any) => {
         this.metaDataArray = response["data"];
-        console.log(response)
-        console.log(response["data"]);
-        console.log('karthik',this.metaDataArray)
+            console.log(response)
+            console.log(response["data"]);
+       // this.metaDataArray[0]["radioFlag"]=false;
+       // this.metaDataArray[1]["radioFlag"]=true;
+        this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=UserDataAccessTable&q=refUserId=="+this.user_id).subscribe(
+          (response3: any) => {
+          if(response3["data"].length > 0)  {
+            console.log('UserData-Access table',response3["data"]);
+            var userdata = response3["data"];
+            console.log('userdata',userdata);
+            this.metaDataArray = response["data"];
+            console.log(response)
+            console.log(response["data"]);
+            console.log('karthik',this.metaDataArray)
+            for(var i=0;i<this.metaDataArray.length;i++){
+              this.metaDataArray[i]["radioFlag"] = false;
+            }
+            console.log('loop after',this.metaDataArray);
+            console.log('loop user data',userdata)
+            for(var i=0;i<this.metaDataArray.length;i++){
+              console.log('meta data',this.metaDataArray[i]["id"]);
+              for(var j=0;j<userdata.length;j++){
+                console.log('user meta id',userdata[j]["refTableMetaData"]["value"])
+                console.log(userdata[j]["status"]["value"] )
+                if(userdata[j]["status"]["value"] == 'Active'){
+                  if(this.metaDataArray[i]["id"]==userdata[j]["refTableMetaData"]["value"]){
+  
+                    this.metaDataArray[i]["radioFlag"] = true;
+                  }
+                 
+                 
+                }
+                // if(userdata[j]["status"]["value"] == 'In Active'){
+                //   if(this.metaDataArray[i]["id"]==userdata[j]["refTableMetaData"]["value"]){
+  
+                //     this.metaDataArray[i]["radioFlag"] = false;
+                //   }
+                 
+                 
+                // }
+
+
+              }
+            
+            
+
+
+            }
+            console.log('object allow denny',this.metaDataArray)
+          }
+          });
+      
+
+
       });
      
      
@@ -173,6 +231,9 @@ export class IdentityAccessComponent implements OnInit {
       (response3: any) => {
       if(response3["data"].length > 0)  {
         console.log('UserData-Access table',response3["data"]);
+      
+        // this.userTableAD = new FormControl(response3["data"][0]["status"]["value"]);
+        // console.log(this.userTableAD )
       }
       });
 
@@ -201,9 +262,9 @@ export class IdentityAccessComponent implements OnInit {
       console.log(post_val1);
       this.dataService.patchData(post_val1, this.dataService.NODE_API + '/api/service/entities/'+response3["data"][0]["id"]+'/UserDataAccessTable').subscribe((response1: any) => {
        
-       console.log('denny',response1)
+       console.log('update denny',response1)
     
-        this.commonService.triggerToast({ type: 'success', title: "", msg: "Table Now In Active" })
+        this.commonService.triggerToast({ type: 'success', title: "", msg: "Table Now Active" })
       
       });
        
@@ -250,9 +311,9 @@ export class IdentityAccessComponent implements OnInit {
       console.log(post_val);
       this.dataService.postData(post_val, this.dataService.NODE_API + '/api/service/entities').subscribe((response1: any) => {
        
-       console.log('denny',response1)
+       console.log('new denny',response1)
     
-        this.commonService.triggerToast({ type: 'success', title: "", msg: "Table created and status is inactive" })
+        this.commonService.triggerToast({ type: 'success', title: "", msg: "Table created and status is active" })
       
       });
 
@@ -279,7 +340,7 @@ export class IdentityAccessComponent implements OnInit {
         var post_val1 =  {
           "status": {
             "type": "Property",
-            "value": "In Active"
+            "value": "Inactive"
         },
         "refUserId": {
           "type": "Relationship",
@@ -292,9 +353,9 @@ export class IdentityAccessComponent implements OnInit {
       console.log(post_val1);
       this.dataService.patchData(post_val1, this.dataService.NODE_API + '/api/service/entities/'+response3["data"][0]["id"]+'/UserDataAccessTable').subscribe((response1: any) => {
        
-       console.log('denny',response1)
+       console.log('update allow',response1)
     
-        this.commonService.triggerToast({ type: 'success', title: "", msg: "Table Now Active" })
+        this.commonService.triggerToast({ type: 'success', title: "", msg: "Table Now In Active" })
       
       });
        
@@ -332,7 +393,7 @@ export class IdentityAccessComponent implements OnInit {
              },
           "status":{
                    "type": "Property",
-                     "value": "In Active"
+                     "value": "Inactive"
              }
             
                
@@ -341,9 +402,9 @@ export class IdentityAccessComponent implements OnInit {
       console.log(post_val);
       this.dataService.postData(post_val, this.dataService.NODE_API + '/api/service/entities').subscribe((response1: any) => {
        
-       console.log('denny',response1)
+       console.log('new allow',response1)
     
-        this.commonService.triggerToast({ type: 'success', title: "", msg: "Table created and  Now Active" })
+        this.commonService.triggerToast({ type: 'success', title: "", msg: "Table In Active" })
       
       });
 
@@ -504,7 +565,7 @@ export class IdentityAccessComponent implements OnInit {
       var post_val3 =  {
         "status": {
           "type": "Property",
-          "value": "In Active"
+          "value": "Inactive"
       }   
              
       }
@@ -590,6 +651,7 @@ export class IdentityAccessComponent implements OnInit {
          
       console.log('Table Meta Data',this.metaDataArray)
          this.commonService.triggerToast({ type: 'success', title: "", msg: "New Column access Active" })
+         this.router.navigateByUrl('/list-of-user');
        
        });
 
@@ -673,6 +735,7 @@ export class IdentityAccessComponent implements OnInit {
          
       console.log('Table Meta Data',this.metaDataArray)
          this.commonService.triggerToast({ type: 'success', title: "", msg: "New Column access Active" })
+         this.router.navigateByUrl('/list-of-user');
        
        });
 
@@ -692,7 +755,7 @@ export class IdentityAccessComponent implements OnInit {
       var post_val1 =  {
         "status": {
           "type": "Property",
-          "value": "In Active"
+          "value": "Inactive"
       }   
              
       }

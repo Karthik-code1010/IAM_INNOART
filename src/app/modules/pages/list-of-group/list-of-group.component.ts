@@ -172,6 +172,12 @@ export class ListOfGroupComponent implements OnInit {
   goPage(page: any) {
     this.router.navigateByUrl(page);
   }
+  goGroupPermission(gid:any){
+    console.log(gid);
+    // (click)="goPage('group-permission')"
+    this.router.navigateByUrl('/group-permission', { state: { group_Id:gid  } });
+
+  }
 
 
 }

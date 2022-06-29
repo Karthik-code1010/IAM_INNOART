@@ -69,52 +69,13 @@
           </div>
           <div>
               <h3>List of Tables</h3>
-              <mat-list role="list">
+              <mat-list role="list" *ngFor="let tab of metaDataArray">
                 <mat-list-item role="listitem">  <div fxLayout="row" style="align-items: stretch;">
                     <mat-icon style="transform: scale(0.8);"> border_all</mat-icon>
-                   <p style="margin-top: 3px;">Employee Info</p>
+                   <p style="margin-top: 3px;">{{tab.tableName.value}}</p>
                    
                   </div></mat-list-item>
-                  <mat-list-item role="listitem">  <div fxLayout="row" style="align-items: stretch;">
-                    <mat-icon style="transform: scale(0.8);"> border_all</mat-icon>
-                   <p style="margin-top: 3px;">Table Name1</p>
-                   
-                  </div></mat-list-item>
-                  <mat-list-item role="listitem">  <div fxLayout="row" style="align-items: stretch;">
-                    <mat-icon style="transform: scale(0.8);"> border_all</mat-icon>
-                   <p style="margin-top: 3px;">Table Name2</p>
-                   
-                  </div></mat-list-item>
-                  <mat-list-item role="listitem">  <div fxLayout="row" style="align-items: stretch;">
-                    <mat-icon style="transform: scale(0.8);"> border_all</mat-icon>
-                   <p style="margin-top: 3px;">Table Name3</p>
-                   
-                  </div></mat-list-item>
-                  <mat-list-item role="listitem">  <div fxLayout="row" style="align-items: stretch;">
-                    <mat-icon style="transform: scale(0.8);"> border_all</mat-icon>
-                   <p style="margin-top: 3px;">Table Name4</p>
-                   
-                  </div></mat-list-item>
-                  <mat-list-item role="listitem">  <div fxLayout="row" style="align-items: stretch;">
-                    <mat-icon style="transform: scale(0.8);"> border_all</mat-icon>
-                   <p style="margin-top: 3px;">Table Name5</p>
-                   
-                  </div></mat-list-item>
-                  <mat-list-item role="listitem">  <div fxLayout="row" style="align-items: stretch;">
-                    <mat-icon style="transform: scale(0.8);"> border_all</mat-icon>
-                   <p style="margin-top: 3px;">Table Name6</p>
-                   
-                  </div></mat-list-item>
-                  <mat-list-item role="listitem">  <div fxLayout="row" style="align-items: stretch;">
-                    <mat-icon style="transform: scale(0.8);"> border_all</mat-icon>
-                   <p style="margin-top: 3px;">Table Name7</p>
-                   
-                  </div></mat-list-item>
-                  <mat-list-item role="listitem">  <div fxLayout="row" style="align-items: stretch;">
-                    <mat-icon style="transform: scale(0.8);"> border_all</mat-icon>
-                   <p style="margin-top: 3px;">Table Name8</p>
-                   
-                  </div></mat-list-item>
+              
               </mat-list>
 
             

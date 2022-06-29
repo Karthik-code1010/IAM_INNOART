@@ -66,9 +66,6 @@
                            
                           </mat-form-field>
                     </div>
-                    <div fxFlex="10">
-                        <button mat-raised-button color="primary" (click)="removeQuantity(i)">Remove</button>
-                    </div>
                     <div fxFlex="20">
                         <mat-radio-group  formControlName="and_or" fxLayout="row"  fxLayoutGap="30px"aria-label="">
                             <mat-radio-button  value="AND">AND</mat-radio-button>
@@ -77,6 +74,10 @@
                         <!-- <button mat-raised-button>AND</button>
                         <button mat-raised-button color="primary">OR</button> -->
                     </div>
+                    <div fxFlex="10">
+                        <button mat-raised-button color="primary" (click)="removeQuantity(i)">Remove</button>
+                    </div>
+                  
                   
     
     

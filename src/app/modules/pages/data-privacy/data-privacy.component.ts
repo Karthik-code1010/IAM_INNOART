@@ -38,6 +38,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class DataPrivacyComponent implements OnInit {
   @ViewChild('title') title!: ElementRef;
+  metaDataArray: any = [];
   ngAfterViewInit() {
     animate({
       from: 'translateX(-200px)',
@@ -55,6 +56,20 @@ export class DataPrivacyComponent implements OnInit {
   }
  
   ngOnInit(): void {
+    this.getMetaData();
+  }
+  
+  getMetaData(){
+    console.log(this.dataService.NODE_API);
+      this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=TableMetaData").subscribe(
+      (response: any) => {
+        this.metaDataArray = response["data"];
+        console.log(response)
+        console.log(response["data"]);
+        console.log('karthik',this.metaDataArray)
+      });
+     
+     
   }
 
   items:any = [];
