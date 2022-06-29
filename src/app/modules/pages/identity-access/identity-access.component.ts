@@ -127,16 +127,34 @@ export class IdentityAccessComponent implements OnInit {
   }
   searchMetaDataName(){
     console.log(this.searchMetaData);
-    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=TableMetaData&q=tableName=="+this.searchMetaData).subscribe(
-      (response1: any) => {
-       if(response1["data"].length>0){
-       
-        this.metaDataArray = response1["data"];
-       }else{
+    var temp:any = this.metaDataArray
+    if(this.searchMetaData == ''){
+      this.getMetaData();
+    }
+    
+     
+     var searchobj= this.metaDataArray.filter((item:any) => item.tableName.value .indexOf(this.searchMetaData) !== -1);
+  
+      if(searchobj.length > 0){
+        this.metaDataArray = searchobj
+      }else{
         this.getMetaData();
-       }
+      }
+
+   
+   
+
+
+    // this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=TableMetaData&q=tableName=="+this.searchMetaData).subscribe(
+    //   (response1: any) => {
+    //    if(response1["data"].length>0){
+       
+    //     this.metaDataArray = response1["data"];
+    //    }else{
+    //     this.getMetaData();
+    //    }
       
-      });
+    //   });
 
   }
   
@@ -150,16 +168,22 @@ export class IdentityAccessComponent implements OnInit {
     if(this.searchColumn == ''){
       this.columndata = this.old_temp;
     }
-
-    for(var i=0;i<this.columndata.length;i++){
-      if(this.columndata[i]["value"]==this.searchColumn){
-        temparray.push(this.columndata[i]);
-        this.columndata = temparray;
-        console.log('search col',this.columndata);
-      }else{
-        this.columndata = this.old_temp;
-      }
+    var searchobj= this.columndata.filter((item:any) => item.value .indexOf(this.searchColumn) !== -1);
+    if(searchobj.length > 0){
+      this.columndata  = searchobj
+    }else{
+      this.columndata = this.old_temp;
     }
+
+    // for(var i=0;i<this.columndata.length;i++){
+    //   if(this.columndata[i]["value"]==this.searchColumn){
+    //     temparray.push(this.columndata[i]);
+    //     this.columndata = temparray;
+    //     console.log('search col',this.columndata);
+    //   }else{
+    //     this.columndata = this.old_temp;
+    //   }
+    // }
   }
 
 

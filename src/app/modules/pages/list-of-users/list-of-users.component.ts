@@ -56,16 +56,32 @@ export class ListOfUsersComponent implements OnInit {
   searchUser(){
    
     console.log(this.searchname);
-    this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=User&q=username=="+this.searchname).subscribe(
-      (response1: any) => {
-       if(response1["data"].length>0){
+    if(this.searchname == ''){
+      this.getuserData();
+    }
+    
+     
+     var searchobj= this.userdataval.filter((item:any) => item.username.value .indexOf(this.searchname) !== -1);
+  
+      if(searchobj.length > 0){
+        this.userdataval = searchobj
+      }else{
+        this.getuserData();
+      }
+
+   
+
+    // this.dataService.getData(this.dataService.NODE_API + "/api/service/entities?type=User&q=username=="+this.searchname).subscribe(
+    //   (response1: any) => {
+    //    if(response1["data"].length>0){
+    //     console.log(response1["data"]);
        
-        this.userdataval = response1["data"];
-       }else{
-        this.getuserData()
-       }
+    //     this.userdataval = response1["data"];
+    //    }else{
+    //     this.getuserData()
+    //    }
       
-      });
+    //   });
 
   }
   pageChangeEvent(event:any) {
